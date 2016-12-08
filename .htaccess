@@ -1,0 +1,7 @@
+DirectoryIndex index.md
+#ErrorDocument 404 /error404.htm
+
+RewriteEngine on
+
+RewriteRule ^(.*)\.html?$ .engine/showpage.php [L,NC]
+RewriteRule ^(.*)\.md$ .engine/showpage.php [L,NC]
