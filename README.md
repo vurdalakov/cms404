@@ -16,14 +16,14 @@ Written in PHP5 language. Does not use databases.
 
 #### Without using Git repository
 
-1. Download this repository content.
+1. Download this [repository](https://github.com/vurdalakov/cms300) content.
 1. Replace `.md` files with your own content.
 1. [Customize](customization.md) `template.htm`, `default.css` and `.config` files to follow your needs.
 1. Upload repository content to any place of your site.
 
 #### Using Git repository
 
-1. Fork this repository.
+1. Fork this [repository](https://github.com/vurdalakov/cms300).
 1. Replace `.md` files with your own content.
 1. [Customize](customization.md) `template.htm`, `default.css` and `.config` files to follow your needs.
 1. Set `$gitTag` property (any URL-encoded string) in `.config` file.
@@ -35,7 +35,7 @@ Written in PHP5 language. Does not use databases.
 
 - [Parsedown](http://parsedown.org/) markdown parser in PHP.
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css): the minimal amount of CSS to replicate the GitHub Markdown style.
-- [Wikitten]: a small, fast, PHP wiki.
+- [Wikitten](https://wikitten.vizuina.com/): a small, fast, PHP wiki.
 
 ### License
 

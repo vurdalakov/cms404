@@ -17,5 +17,7 @@ Following macros will be replaced in `template.htm` and `.md` files:
 
 - `$siteAuthor` - site author, replaces `$$(SITE_AUTHOR)` macro
 - `$siteTitle` - site title, replaces `$$(SITE_TITLE)` macro
-- `$gitTag` - secret tag to be used in update from Git repository.
+
 - `$error404` - location of `.md` file shown when error 404 occures.
+- `$gitTag` - secret tag to be used in update from Git repository.
+- `$templateFileName` - template file name, relative to site root.

@@ -41,7 +41,7 @@ $page = new Page($engine->pageFilePath);
 $md = replaceTags($page->content, $engine, $page);
 $html = Parsedown::instance()->text($md);
 
-$template = $engine->readTextFile(".engine/template.htm"); // TODO: from props
+$template = $engine->readTextFile($engine->templateFileName);
 
 $template = replaceTags($template, $engine, $page);
 replaceTag($template, "PAGE_CONTENT", $html);
