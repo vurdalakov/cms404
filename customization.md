@@ -4,20 +4,42 @@
 
 Following macros will be replaced in `template.htm` and `.md` files:
 
-- `$$(INCLUDE,filename)` - Inserts content of `filename`. File path is relative to site root.
-- `$$(PAGE_CONTENT)` - current page content in HTML format (only in `template.htm`).
-- `$$(PAGE_TITLE)` - current page title, is taken from heading 1 level of markdown text.
-- `$$(PAGE_URL)` - current page URL.
-- `$$(SITE_AUTHOR)` - is taken from `.config` file `$siteAuthor` property.
-- `$$(SITE_TITLE)` - is taken from `.config` file `$siteTitle` property.
-- `$$(SITE_URL)` - site root URL (where `.config` is located).
-- `$$(THIS_YEAR)` - 4 digit current year (e.g. `2016`).
+- `\$$(INCLUDE,filename)` - Inserts content of `filename`. File path is relative to site root.
+- `\$$(PAGE_CONTENT)` - current page content in HTML format (only in `template.htm`).
+- `\$$(PAGE_TITLE)` - current page title, is taken from heading 1 level of markdown text.
+- `\$$(PAGE_URL)` - current page URL.
+- `\$$(SITE_AUTHOR)` - is taken from `.config` file `$siteAuthor` property.
+- `\$$(SITE_TITLE)` - is taken from `.config` file `$siteTitle` property.
+- `\$$(SITE_URL)` - site root URL (where `.config` is located).
+- `\$$(THIS_YEAR)` - 4 digit current year (e.g. `2016`).
 
-### `.config` file property
+Example:
 
-- `$siteAuthor` - site author, replaces `$$(SITE_AUTHOR)` macro
-- `$siteTitle` - site title, replaces `$$(SITE_TITLE)` macro
+```
+<link rel="stylesheet" type="text/css" media="screen,print" href="\$$(SITE_URL)/css/default.css" />
+```
+
+If you want to use any of these macros as a literal, you need to escape them with a backslash.
+
+### Site properties
+
+Site properties are located in the `.config` file.
+
+- `$siteAuthor` - site author, replaces `\$$(SITE_AUTHOR)` macro
+- `$siteTitle` - site title, replaces `\$$(SITE_TITLE)` macro
 
 - `$error404` - location of `.md` file shown when error 404 occures.
 - `$gitTag` - secret tag to be used in update from Git repository.
 - `$templateFileName` - template file name, relative to site root.
+
+Note that empty lines are not allowed in `.config` file, everything below an empty line will be ignored.
+
+Default content of `.config` file:
+
+```
+$siteAuthor=vurdalakov
+$siteTitle=cms404
+$error404=.custom/error404.md
+$gitTag=cms404tag
+$templateFileName=.custom/template.htm
+```
