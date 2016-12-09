@@ -1,5 +1,11 @@
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</Files>
+
 DirectoryIndex index.md
-#ErrorDocument 404 /error404.htm
+ErrorDocument 404 /cms404/error404.htm
 
 RewriteEngine on
 
