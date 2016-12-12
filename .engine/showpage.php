@@ -6,7 +6,16 @@ require_once('Parsedown.php');
 
 function replaceTag($text, $tag, $value)
 {
-    return preg_replace(sprintf('/(?<=^|[^\\\\])(\$\$\(%s\))/', $tag), $value,  $text);
+    return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*[)}]/', $tag),
+        function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? Parsedown::instance()->text($value) : $value; },
+        $text);
+}
+
+function replaceTagExt($text, $tag, $callback)
+{
+    return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*,\s*(.+?)\s*[)}]/', $tag),
+        function ($matches) use($callback) { $result = call_user_func($callback, $matches); return strpos($matches[0], '$${') !== false ? Parsedown::instance()->text($result) : $result; },
+        $text);
 }
 
 function replaceTags($text, $engine, $page)
@@ -17,10 +26,14 @@ function replaceTags($text, $engine, $page)
     $text = replaceTag($text, "SITE_TITLE", $engine->siteTitle);
     $text = replaceTag($text, "SITE_URL", $engine->rootUrl);
     $text = replaceTag($text, "THIS_YEAR", $engine->thisYear);
+    $text = replaceTag($text, "FOLDER_LIST", $engine->folderList());
+    $text = replaceTag($text, "PAGE_LIST", $engine->fileList());
+    $text = replaceTag($text, "PAGE_LIST_ALL", $engine->allFilesList());
 
-    return preg_replace_callback('/(?<=^|[^\\\\])\$\$\(\s*INCLUDE\s*,\s*(.+?)\s*\)/',
-        function ($matches) use ($engine) { return $engine->readTextFile($matches[1]); },
-        $text);
+    $text = replaceTagExt($text, 'INCLUDE', function ($matches) use ($engine) { return $engine->readTextFile($matches[1]); });
+    $text = replaceTagExt($text, 'FOLDER_LIST', function ($matches) use ($engine) { return $engine->folderList($matches[1]); });
+        
+    return $text;
 }
 
 $engine = new Engine();
@@ -35,5 +48,5 @@ $template = $engine->readTextFile($engine->templateFileName);
 $template = replaceTags($template, $engine, $page);
 $content = replaceTag($template, "PAGE_CONTENT", $html);
 
-echo str_replace('\$$(', '$$(', $content);
+echo str_replace('\$$(', '$$(', str_replace('\$${', '$${', $content));
 ?>

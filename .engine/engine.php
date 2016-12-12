@@ -51,6 +51,131 @@ class Engine extends PropertyClass
 	{
 		return readTextFile(combinePath($this->rootDir, $fileName));
 	}
+
+   	function fileList($path = null)
+	{
+        $files = $this->getFileList($this->makeDir($path), $this->makeUrl($path));
+
+		return $this->makeBulletList($files);
+    }
+
+    private function getFileList($folderDir, $folderUrl)
+	{
+        $files = array();
+
+        $items = scandir($folderDir);
+        foreach ($items as $index => $itemName)
+        {
+            $itemPath = combinePath($folderDir, $itemName);
+            if (is_file($itemPath) && ('md' == pathinfo($itemPath, PATHINFO_EXTENSION)) && ('index.md' != pathinfo($itemPath, PATHINFO_BASENAME)))
+            {
+                $file = array("name"=>$itemName, "path"=>$itemPath);
+
+                $props = new Properties($itemPath);
+                
+                $file['title'] = $props->get('title', $itemName);
+                $file['order'] = $props->get('order', -1);
+
+                $file['url'] = changeExtension(combinePath($folderUrl, $itemName), '.htm');
+
+                $files[$file['title']] = $file;
+            }
+        }
+
+        ksort($files);
+        
+        return $files;
+    }
+    
+   	function allFilesList($path = null)
+	{
+        $files = array();
+        
+        $this->getAllFilesList($this->makeDir($path), $this->makeUrl($path), $files);
+
+        ksort($files);
+        
+		return $this->makeBulletList($files);
+    }
+
+   	private function getAllFilesList($folderDir, $folderUrl, &$files)
+	{
+        $folders = $this->getFolderList($folderDir, $folderUrl);
+        
+        foreach ($folders as $index => $folder)
+        {
+            $folderDir = $folder['path'];
+            $folderUrl = $folder['url'];
+            
+            $files = array_merge($files, $this->getFileList($folderDir, $folderUrl));
+            
+            $this->getAllFilesList($folderDir, $folderUrl, $files);
+        }
+    }
+
+   	function folderList($path = null)
+	{
+        $folders = $this->getFolderList($this->makeDir($path), $this->makeUrl($path));
+
+		return $this->makeBulletList($folders);
+    }
+
+    private function getFolderList($folderDir, $folderUrl)
+	{
+        $folders = array();
+
+        $items = scandir($folderDir);
+        foreach ($items as $index => $itemName)
+        {
+            if ($itemName[0] == '.')
+            {
+                continue;
+            }
+            
+            $itemPath = combinePath($folderDir, $itemName);
+            if (is_dir($itemPath))
+            {
+                $folder = array('name'=>$itemName, 'path'=>$itemPath);
+
+                $props = new Properties($itemPath);
+                
+                $folder['title'] = $props->get('title', $itemName);
+                $folder['order'] = $props->get('order', -1);
+
+                $folder['url'] = combinePath($folderUrl, $itemName);
+
+                $index = $folder['order'] >= 0 ? $folder['order'] : 1000000 + count($folders);
+                
+                $folders[$index] = $folder;
+            }
+        }
+
+        ksort($folders);
+        
+        return $folders;
+    }
+    
+    private function makeDir($path)
+    {
+        return  is_null($path) ? $this->pageDir : combinePath($this->rootDir, $path);
+    }
+    
+    private function makeUrl($path)
+    {
+        return is_null($path) ? dirname($this->pageUrl) : combinePath($this->rootUrl, $path);
+    }
+
+    private function makeBulletList($items)
+    {
+        $md = '';
+
+        foreach ($items as $index => $item)
+        {
+            $md .= '- [' . $item['title'] . '](' . $item['url'] . ")\n";
+        }
+
+		return $md;
+    }
 }
 
 ?>
