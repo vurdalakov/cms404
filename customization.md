@@ -44,8 +44,11 @@ Site properties are located in the `.config` file.
 - `$siteTitle` - site title, replaces `\$$(SITE_TITLE)` macro
 
 - `$error404` - location of `.md` file shown when error 404 occures.
-- `$gitTag` - secret tag to be used in update from Git repository.
 - `$templateFileName` - template file name, relative to site root.
+
+- `$gitTag` - secret tag to be used in Git update.
+- `$gitPath` - path to Git executable
+- `adminEmail` - webmaster email to receive Git update status. Remove or keep empty to disable email sending.
 
 Note that empty lines are not allowed in `.config` file, everything below an empty line will be ignored.
 
@@ -55,6 +58,8 @@ Default content of `.config` file:
 $siteAuthor=vurdalakov
 $siteTitle=cms404
 $error404=.custom/error404.md
-$gitTag=cms404tag
 $templateFileName=.custom/template.htm
+$gitTag=cms404tag
+$gitPath=/usr/local/bin/git
+$adminEmail=vurdalakov@gmail.com
 ```

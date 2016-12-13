@@ -15,6 +15,7 @@ function changeExtension($fileName, $newExtension)
     $info = pathinfo($fileName);
     return $info['dirname'] . '/' . $info['filename'] . '.' . ltrim($newExtension, '.');
 }
+
 function readTextFile($fileName)
 {
     $text = file_get_contents(htmlspecialchars($fileName));
@@ -25,4 +26,8 @@ function readTextFile($fileName)
     return $text;
 }
 
+function isNullOrWhitespace($string)
+{
+    return !isset($string) or is_null($string) or ('' === trim($string));
+}
 ?>
