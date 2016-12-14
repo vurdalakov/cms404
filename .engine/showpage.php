@@ -40,8 +40,15 @@ $engine = new Engine();
 
 $page = new Page($engine->pageFilePath);
 
-$md = replaceTags($page->content, $engine, $page);
-$html = Parsedown::instance()->text($md);
+if (isset($_GET['source']))
+{
+    $html = "<pre>\r\n" . readTextFile($engine->pageFilePath) . "</pre>\r\n";
+}
+else
+{
+    $md = replaceTags($page->content, $engine, $page);
+    $html = Parsedown::instance()->text($md);
+}
 
 $template = $engine->readTextFile($engine->templateFileName);
 

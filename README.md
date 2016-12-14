@@ -11,6 +11,7 @@ Written in PHP5 language. Does not use databases.
 - Content files can be stored in a directory structure.
 - Designed to be updated from a Git repository.
 - Automatically changes `.md` extensions to `.htm` in site URLs.
+- [View page source](sourceview.md) (markdown content).
 
 ### Quick start
 
