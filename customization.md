@@ -40,14 +40,15 @@ Mosly useful in `template.htm`. For example, following line shows a menu of top-
 
 Site properties are located in the `.config` file.
 
-- `$siteAuthor` - site author, replaces `\$$(SITE_AUTHOR)` macro
-- `$siteTitle` - site title, replaces `\$$(SITE_TITLE)` macro
+- `$siteAuthor` - site author, replaces `\$$(SITE_AUTHOR)` macro.
+- `$siteTitle` - site title, replaces `\$$(SITE_TITLE)` macro.
 
 - `$error404` - location of `.md` file shown when error 404 occures.
 - `$templateFileName` - template file name, relative to site root.
 
 - `$gitTag` - secret tag to be used in Git update.
-- `$gitPath` - path to Git executable
+- `$gitPath` - path to Git executable.
+- `$gitRemote` - Git remote path.
 - `adminEmail` - webmaster email to receive Git update status. Remove or keep empty to disable email sending.
 
 Note that empty lines are not allowed in `.config` file, everything below an empty line will be ignored.
@@ -61,5 +62,6 @@ $error404=.custom/error404.md
 $templateFileName=.custom/template.htm
 $gitTag=cms404tag
 $gitPath=/usr/local/bin/git
+$gitRemote=origin/master
 $adminEmail=vurdalakov@gmail.com
 ```

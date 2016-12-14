@@ -57,7 +57,7 @@ class Updater extends PropertyClass
 
         $this->stdout('-----------------------');
 
-        $this->exec("$git fetch --all && $git reset --hard");
+        $this->exec("$git fetch --all && $git reset --hard " . $this->gitRemote);
 
         // all done
 
