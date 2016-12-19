@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once('propertyclass.php');
 require_once('common.php');
