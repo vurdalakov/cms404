@@ -1,4 +1,4 @@
-﻿# View page source
+# View page source
 
 To view page source (markdown content), add `?source` query string to the page URL, e.g.:
 

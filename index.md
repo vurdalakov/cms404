@@ -1,2 +1,2 @@
-﻿$title=cms404
+$title=cms404
 $$(INCLUDE,README.md)
