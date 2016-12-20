@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // http://php.net/manual/en/language.oop5.overloading.php
 // http://php.net/manual/en/class.reflectionclass.php

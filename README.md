@@ -1,4 +1,4 @@
-﻿# cms404
+# cms404
 
 **cms404** is a very simple static content management system for building websites out of [markdown](https://daringfireball.net/projects/markdown/) files.
 

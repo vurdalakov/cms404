@@ -1,4 +1,4 @@
-﻿# cms404 customization
+# cms404 customization
 
 ### Macros
 
