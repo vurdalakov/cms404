@@ -33,6 +33,14 @@ Written in PHP5 language. Does not use databases.
 1. Configure deployment key in Git repository and copy it to your web site.
 1. Configure webhook in Git repository to POST to `<your site root>/.engine/update.php?tag=<git tag>` URL.
 
+#### Known problems and solutions
+
+Disable [eAccelerator PHP extension](https://github.com/eaccelerator/eaccelerator/issues/12) if you get the following error:
+
+```
+preg_replace_callback(): Requires argument 2, '', to be a valid callback
+```
+
 ### Acknowledgements
 
 - [Parsedown](http://parsedown.org/) markdown parser in PHP.

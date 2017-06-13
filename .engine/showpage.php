@@ -23,6 +23,10 @@ function replaceTag($text, $tag, $value)
     return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*[)}]/', $tag),
         function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? parsedown($value) : $value; },
         $text);
+
+    // Disable eAccelerator PHP extension if you get the following error:
+    // preg_replace_callback(): Requires argument 2, '', to be a valid callback
+    // https://github.com/eaccelerator/eaccelerator/issues/12
 }
 
 function replaceTagExt($text, $tag, $callback)
