@@ -18,6 +18,13 @@ function changeExtension($fileName, $newExtension)
 
 function readTextFile($fileName)
 {
+    $fileName = htmlspecialchars($fileName);
+    
+    if (!is_file($fileName))
+    {
+        return "";
+    }
+    
     $text = file_get_contents(htmlspecialchars($fileName));
     if (substr($text, 0, 3) == "\xEF\xBB\xBF")
     {
