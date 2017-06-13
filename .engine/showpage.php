@@ -5,19 +5,29 @@ require_once('page.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-$parsedown = new ParsedownExtra();
+function parsedown($text)
+{
+    static $parsedown;
+    
+    if (!isset($parsedown))
+    {
+        $parsedown = new ParsedownExtra();
+    }
+
+    return $parsedown->text($text);
+}
 
 function replaceTag($text, $tag, $value)
 {
     return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*[)}]/', $tag),
-        function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? $parsedown->text($value) : $value; },
+        function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? parsedown($value) : $value; },
         $text);
 }
 
 function replaceTagExt($text, $tag, $callback)
 {
     return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*,\s*(.+?)\s*[)}]/', $tag),
-        function ($matches) use($callback) { $result = call_user_func($callback, $matches); return strpos($matches[0], '$${') !== false ? $parsedown->text($result) : $result; },
+        function ($matches) use($callback) { $result = call_user_func($callback, $matches); return strpos($matches[0], '$${') !== false ? parsedown($result) : $result; },
         $text);
 }
 
@@ -50,7 +60,7 @@ if (isset($_GET['source']))
 else
 {
     $md = replaceTags($page->content, $engine, $page);
-    $html = $parsedown->text($md);
+    $html = parsedown($md);
 }
 
 $template = $engine->readTextFile($engine->templateFileName);
