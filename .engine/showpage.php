@@ -4,6 +4,7 @@ require_once('engine.php');
 require_once('page.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
+require_once('ParsedownExtensions.php');
 
 function parsedown($text)
 {
@@ -11,9 +12,9 @@ function parsedown($text)
     
     if (!isset($parsedown))
     {
-        $parsedown = new ParsedownExtra();
+        $parsedown = new ParsedownExtensions();
     }
-
+    
     return $parsedown->text($text);
 }
 
