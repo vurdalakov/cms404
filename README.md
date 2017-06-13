@@ -35,6 +35,7 @@ Written in PHP5 language. Does not use databases.
 ### Acknowledgements
 
 - [Parsedown](http://parsedown.org/) markdown parser in PHP.
+- [Parsedown Extra](https://github.com/erusev/parsedown-extra) extension.
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css): the minimal amount of CSS to replicate the GitHub Markdown style.
 - [Wikitten](https://wikitten.vizuina.com/): a small, fast, PHP wiki.
 

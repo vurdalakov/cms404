@@ -3,18 +3,21 @@
 require_once('engine.php');
 require_once('page.php');
 require_once('Parsedown.php');
+require_once('ParsedownExtra.php');
+
+$parsedown = new ParsedownExtra();
 
 function replaceTag($text, $tag, $value)
 {
     return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*[)}]/', $tag),
-        function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? Parsedown::instance()->text($value) : $value; },
+        function ($matches) use($value) { return strpos($matches[0], '$${') !== false ? $parsedown->text($value) : $value; },
         $text);
 }
 
 function replaceTagExt($text, $tag, $callback)
 {
     return preg_replace_callback(sprintf('/(?<=^|[^\\\\])\$\$[({]\s*%s\s*,\s*(.+?)\s*[)}]/', $tag),
-        function ($matches) use($callback) { $result = call_user_func($callback, $matches); return strpos($matches[0], '$${') !== false ? Parsedown::instance()->text($result) : $result; },
+        function ($matches) use($callback) { $result = call_user_func($callback, $matches); return strpos($matches[0], '$${') !== false ? $parsedown->text($result) : $result; },
         $text);
 }
 
@@ -47,7 +50,7 @@ if (isset($_GET['source']))
 else
 {
     $md = replaceTags($page->content, $engine, $page);
-    $html = Parsedown::instance()->text($md);
+    $html = $parsedown->text($md);
 }
 
 $template = $engine->readTextFile($engine->templateFileName);
