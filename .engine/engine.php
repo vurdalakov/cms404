@@ -16,11 +16,8 @@ class Engine extends PropertyClass
 	{
 //print_r($_SERVER);echo "<br/>\n";
 
-        $this->rootUrl = $_SERVER['SCRIPT_NAME'];
-        $this->rootDir = $_SERVER['SCRIPT_FILENAME'];
-        $pos = strpos($this->rootDir, '/', strlen($this->rootDir) - strlen($this->rootUrl) + 1);
-        $this->rootDir = substr($this->rootDir, 0, $pos);
-        $this->rootUrl = dirname(dirname($this->rootUrl));
+        $this->rootUrl = dirname(dirname($_SERVER['SCRIPT_NAME']));
+        $this->rootDir = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
 //echo "rootDir='" . $this->rootDir . "'<br/>rootUrl='" . $this->rootUrl . "'<br/>\n";
 
         $propsFileName = combinePath($this->rootDir, ".config");
@@ -32,6 +29,7 @@ class Engine extends PropertyClass
 //echo "pageUrl='" . $this->pageUrl . "'<br/>\n";
 
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+//echo "documentRoot='" . $documentRoot . "'<br/>\n";
         $this->pageFilePath = combinePath($documentRoot, $this->pageUrl);
         $this->pageFilePath = changeExtension($this->pageFilePath, "md");
 //echo "pageFilePath='" . $this->pageFilePath . "'<br/>\n";
