@@ -15,8 +15,6 @@ class Page extends PropertyClass
 
         foreach(preg_split("/((\r?\n)|(\r\n?))/", $text) as $line)
         {
-            $line = trim($line);
-            
             if (0 === strpos($line, '# '))
             {
 				if (empty($this->_title))
