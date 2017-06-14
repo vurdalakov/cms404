@@ -10,6 +10,8 @@ class ParsedownExtensions extends ParsedownExtra
         {
             throw new Exception('ParsedownExtensions requires a later version of ParsedownExtra');
         }
+
+		parent::__construct();
     }
 
     protected function inlineEscapeSequence($Excerpt)
