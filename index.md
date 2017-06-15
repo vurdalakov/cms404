@@ -7,7 +7,7 @@ Written in PHP5 language. Does not use databases.
 ### Features
 
 - [Markdown syntax](https://daringfireball.net/projects/markdown/syntax) of content files, with support of [GitHub flavored markdown](https://help.github.com/categories/writing-on-github/) and [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/).
-- Additional [markdown extensions](extensions.md).
+- Experimental [markdown extensions](extensions.md).
 - [Macros](customization.md) in markdown files.
 - Content files can be stored in a directory structure.
 - Designed to be updated from a Git repository.

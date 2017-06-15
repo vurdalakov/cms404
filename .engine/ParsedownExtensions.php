@@ -12,7 +12,16 @@ class ParsedownExtensions extends ParsedownExtra
         }
 
 		parent::__construct();
+        
+        $this->BlockTypes['%'] []= 'Epigraph';
+
+        // Backslash Escapes
+        
+        $this->specialCharacters[]= ':';
+        $this->specialCharacters[]= '%';
     }
+    
+    // Hard line break
 
     protected function inlineEscapeSequence($Excerpt)
     {
@@ -25,5 +34,50 @@ class ParsedownExtensions extends ParsedownExtra
         }
 
         return parent::inlineEscapeSequence($Excerpt);
+    }
+    
+    // Epigraph
+
+    protected function blockEpigraph($Line)
+    {
+        if ((strlen($Line['text']) > 2) and (' ' == $Line['text'][1]))
+        {
+            $text = substr($Line['text'], 2);
+
+            $Block = array(
+                'element' => array(
+                    'name' => 'p',
+                    'attributes' => array(
+                        'style' => 'padding-left: 60%;',
+                    ),
+                    'text' => $text,
+                    'handler' => 'line',
+                ),
+            );
+
+            return $Block;
+        }
+    }
+
+    protected function blockEpigraphContinue($Line, $Block)
+    {
+        if (isset($Block['complete']))
+        {
+            return;
+        }
+
+        if (isset($Block['interrupted']))
+        {
+            unset($Block['interrupted']);
+
+            $Block['complete'] = true;
+
+            return;
+        }
+
+        $Block['element']['text'] .= "\n";
+        $Block['element']['text'] .= $Line['text'];
+
+        return $Block;
     }
 }
