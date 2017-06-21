@@ -17,8 +17,8 @@ class ParsedownExtensions extends ParsedownExtra
 
         // Backslash Escapes
         
-        $this->specialCharacters[]= ':';
-        $this->specialCharacters[]= '%';
+        $this->specialCharacters []= ':';
+        $this->specialCharacters []= '%';
     }
     
     // Hard line break
@@ -79,5 +79,46 @@ class ParsedownExtensions extends ParsedownExtra
         $Block['element']['text'] .= $Line['text'];
 
         return $Block;
+    }
+
+    // https://stackoverflow.com/questions/619610/whats-the-most-efficient-test-of-whether-a-php-string-ends-with-another-string
+    private function endsWith($string, $test)
+    {
+        $strlen = strlen($string);
+        $testlen = strlen($test);
+        
+        if ($testlen > $strlen)
+        {
+            return false;
+        }
+        
+        return 0 === substr_compare($string, $test, $strlen - $testlen, $testlen);
+    }
+    
+    protected function inlineImage($Excerpt)
+    {
+        $Inline = parent::inlineImage($Excerpt);
+        
+        $alt = $Inline['element']['attributes']['alt'];
+        
+        if ($this->endsWith($alt, ' <>'))
+        {
+            $Inline['element']['attributes']['class'] = 'pde-img-center';
+            $alt = substr($alt, 0, strlen($alt) - 3);
+        }
+        else if ($this->endsWith($alt, ' >'))
+        {
+            $Inline['element']['attributes']['class'] = 'pde-img-right';
+            $alt = substr($alt, 0, strlen($alt) - 2);
+        }
+        else if ($this->endsWith($alt, ' <'))
+        {
+            $Inline['element']['attributes']['class'] = 'pde-img-left';
+            $alt = substr($alt, 0, strlen($alt) - 2);
+        }
+
+        $Inline['element']['attributes']['alt'] = $alt;
+        
+        return $Inline;
     }
 }

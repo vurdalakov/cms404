@@ -1,6 +1,6 @@
 # cms404 markdown extensions
 
-### Hard line breaks
+## Hard line breaks
 
 End a line with two backslashes to insert a hard line break (`<br />`):
 
@@ -12,7 +12,7 @@ This is a line after line break. And this is an escaped backslash: \\.
 This is a line before line break.\\
 This is a line after line break. And this is an escaped backslash: \\.
 
-### Epigraph
+## Epigraph
 
 Begin a line with a percent sign (`%`) and a space to format paragraph as an epigraph.
 
@@ -52,7 +52,7 @@ obtain the greatest benefit to mankind.
 President of
 the United States
 
-### Backslash Escapes
+## Backslash Escapes
 
 The colon (`:`) and the percent sign (`%`) are added to the list of characters you can escape using a backslash.
 With this you can prevent them from triggering a definition list or an epigraph.
@@ -82,3 +82,48 @@ Not a definition
 \% This is not an epigraph
 
 Special characters: \\ \- \: \% \+
+
+## Image alignment
+
+Ending image `alt` attribute text with a space and one or two angle blackets aligns image to the left (` <`), right (` >`) or center (` <>`).
+
+```
+![Default alignment](sample.png)
+![Right-aligned >](sample.png)
+![Left-aligned <](sample.png)
+![Centered <>](sample.png)
+```
+
+Script above is rendered as following:
+
+```
+<img src="sample.png" alt="Default alignment" title="Alt text" />
+<img src="sample.png" alt="Right-aligned" class="pde-img-right" />
+<img src="sample.png" alt="Left-aligned" class="pde-img-left" />
+<img src="sample.png" alt="Centered" class="pde-img-center" />
+```
+
+![Default alignment](sample.png)
+![Right-aligned >](sample.png)
+![Left-aligned <](sample.png)
+![Centered <>](sample.png)
+
+`pde-` styles are defined in `.custom/template.htm` file, you can modify them as you wish:
+
+```
+.pde-img-left {
+    float: left;
+    margin-right: 8px;
+}
+.pde-img-right {
+    float:right;
+    margin-left: 8px;
+}
+.pde-img-center {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    float: none!important;
+}
+```
