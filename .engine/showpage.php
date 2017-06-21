@@ -73,5 +73,10 @@ $template = $engine->readTextFile($engine->templateFileName);
 $template = replaceTags($template, $engine, $page);
 $content = replaceTag($template, "PAGE_CONTENT", $html);
 
-echo str_replace('\$$(', '$$(', str_replace('\$${', '$${', $content));
+if (!isset($_GET['source']))
+{
+    $content = str_replace('\$$(', '$$(', str_replace('\$${', '$${', $content));
+}
+
+echo $content;
 ?>
