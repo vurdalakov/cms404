@@ -17,6 +17,10 @@ class Engine extends PropertyClass
 //print_r($_SERVER);echo "<br/>\n";
 
         $this->rootUrl = dirname(dirname($_SERVER['SCRIPT_NAME']));
+        if ("/" === $this->rootUrl)
+        {
+            $this->rootUrl = "";
+        }
         $this->rootDir = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
 //echo "rootDir='" . $this->rootDir . "'<br/>rootUrl='" . $this->rootUrl . "'<br/>\n";
 

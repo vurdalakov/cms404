@@ -10,7 +10,7 @@ Following macros will be replaced in `template.htm` and `.md` files:
 - `\$$(PAGE_URL)` - current page URL.
 - `\$$(SITE_AUTHOR)` - is taken from `.config` file `$siteAuthor` property.
 - `\$$(SITE_TITLE)` - is taken from `.config` file `$siteTitle` property.
-- `\$$(SITE_URL)` - site root URL (where `.config` is located).
+- `\$$(SITE_URL)` - site root URL (where `.config` is located). This string is empty for the root folder.
 - `\$$(THIS_YEAR)` - 4 digit current year (e.g. `2016`).
 
 - `\$$(FOLDER_LIST)` - Bulleted list of subfolder names, for the current folder.
