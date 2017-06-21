@@ -80,6 +80,8 @@ class ParsedownExtensions extends ParsedownExtra
 
         return $Block;
     }
+    
+    // Image alignment + image title
 
     // https://stackoverflow.com/questions/619610/whats-the-most-efficient-test-of-whether-a-php-string-ends-with-another-string
     private function endsWith($string, $test)
@@ -118,6 +120,7 @@ class ParsedownExtensions extends ParsedownExtra
         }
 
         $Inline['element']['attributes']['alt'] = $alt;
+        $Inline['element']['attributes']['title'] = $alt;
         
         return $Inline;
     }

@@ -127,3 +127,19 @@ Script above is rendered as following:
     float: none!important;
 }
 ```
+
+## Image title
+
+img attribute is added to image, with the same value as alt attribute.
+
+```
+![Image text](sample.png)
+```
+
+```
+<img src="sample.png" alt="Image text" title="Image text" />
+```
+
+Place mouse cursor over the image to see image tooltip:
+
+![Image text](sample.png)
