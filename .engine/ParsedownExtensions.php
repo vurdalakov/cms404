@@ -101,6 +101,11 @@ class ParsedownExtensions extends ParsedownExtra
     {
         $Inline = parent::inlineImage($Excerpt);
         
+        if (!isset($Inline))
+        {
+            return;
+        }
+
         $alt = $Inline['element']['attributes']['alt'];
         
         if ($this->endsWith($alt, ' <>'))
