@@ -17,12 +17,30 @@ This is a line after line break. And this is an escaped backslash: \\.
 Begin a line with a percent sign (`%`) and a space to format paragraph as an epigraph.
 
 ```
-% Whenever you find yourself on the side of the majority, it is time to reform (or pause and reflect).\\
+% Whenever you find yourself on the side of the majority,
+it is time to reform (or pause and reflect).\\
 - Mark Twain, Notebook, 1904.
 ```
 
-% Whenever you find yourself on the side of the majority, it is time to reform (or pause and reflect).\\
+% Whenever you find yourself on the side of the majority,
+it is time to reform (or pause and reflect).\\
 - Mark Twain, Notebook, 1904.
+
+The script above is rendered as following:
+
+```
+<p class="pde-epigraph">Whenever you find yourself on the side of the majority,
+it is time to reform (or pause and reflect).<br />
+- Mark Twain, Notebook, 1904.</p>
+```
+
+`pde-epigraph` style is defined in `.custom/template.htm` file, you can modify it as you wish:
+
+```
+.pde-epigraph {
+    padding-left: 60%;
+}
+```
 
 Epigraphs has all the features of a paragraph. They can be multiline, have inline formatting, etc.
 
@@ -94,7 +112,12 @@ Ending image `alt` attribute text with a space and one or two angle blackets ali
 ![Centered <>](sample.png)
 ```
 
-Script above is rendered as following:
+![Default alignment](sample.png)
+![Right-aligned >](sample.png)
+![Left-aligned <](sample.png)
+![Centered <>](sample.png)
+
+The script above is rendered as following:
 
 ```
 <img src="sample.png" alt="Default alignment" title="Alt text" />
@@ -102,11 +125,6 @@ Script above is rendered as following:
 <img src="sample.png" alt="Left-aligned" class="pde-img-left" />
 <img src="sample.png" alt="Centered" class="pde-img-center" />
 ```
-
-![Default alignment](sample.png)
-![Right-aligned >](sample.png)
-![Left-aligned <](sample.png)
-![Centered <>](sample.png)
 
 `pde-` styles are defined in `.custom/template.htm` file, you can modify them as you wish:
 

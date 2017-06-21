@@ -48,7 +48,7 @@ class ParsedownExtensions extends ParsedownExtra
                 'element' => array(
                     'name' => 'p',
                     'attributes' => array(
-                        'style' => 'padding-left: 60%;',
+                        'class' => 'pde-epigraph',
                     ),
                     'text' => $text,
                     'handler' => 'line',
