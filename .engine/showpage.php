@@ -60,7 +60,7 @@ $page = new Page($engine->pageFilePath);
 
 if (isset($_GET['source']))
 {
-    $html = "<pre>\r\n" . readTextFile($engine->pageFilePath) . "</pre>\r\n";
+    $html = "<pre>\r\n" . htmlspecialchars(readTextFile($engine->pageFilePath)) . "</pre>\r\n";
 }
 else
 {

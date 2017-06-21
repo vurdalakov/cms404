@@ -2,7 +2,7 @@
 
 class ParsedownExtensions extends ParsedownExtra
 {
-    const version = '0.1.0';
+    const version = '0.2.0';
 
     function __construct()
     {

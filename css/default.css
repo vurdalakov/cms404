@@ -9,7 +9,6 @@ html, body {
 
 a:link, a:visited {
 	color: #000;
-	font-weight:bold;
 	text-decoration:none;
 }
 
@@ -68,7 +67,6 @@ nav {
 nav li a.current {
 	background-color: #fff;
 	color: #ffffff;
-	font-weight: bold;
 }
 
 nav ul {

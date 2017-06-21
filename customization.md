@@ -49,7 +49,7 @@ Site properties are located in the `.config` file.
 - `$gitTag` - secret tag to be used in Git update.
 - `$gitPath` - path to Git executable.
 - `$gitRemote` - Git remote path.
-- `adminEmail` - webmaster email to receive Git update status. Remove or keep empty to disable email sending.
+- `$adminEmail` - webmaster email to receive Git update status. Remove or keep empty to disable email sending.
 
 Note that empty lines are not allowed in `.config` file, everything below an empty line will be ignored.
 
