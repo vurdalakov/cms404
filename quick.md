@@ -21,4 +21,4 @@
 1. Set `$gitTag` property (any URL-encoded string) in `.config` file.
 1. Clone your repository to your site (e.g. using SSH).
 1. Configure deployment key in Git repository and copy it to your web site.
-1. Configure webhook in Git repository to POST to `<your site root>/.engine/update.php?tag=<git tag>` URL.
+1. [Configure webhook](webhook.md) in Git repository to POST to `<your site root>/.engine/update.php?tag=<git tag>` URL.

@@ -16,6 +16,7 @@
 ## Documentation
 
 - [Quick start](quick.md)
+- [Create webhook to update web site from Git repository](webhook.md)
 - [Known problems and solutions](solutions.md)\\
 &nbsp;
 - [Macros](macros.md)
