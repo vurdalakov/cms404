@@ -1,6 +1,7 @@
 <?php
 
 require_once('propertyclass.php');
+require_once('properties.php');
 
 class Page extends PropertyClass
 {
@@ -9,24 +10,24 @@ class Page extends PropertyClass
 
 	function __construct($fileName)
 	{
+        $fileNameParts = pathinfo($fileName);
+        
+        $props = new Properties($fileName);
+        $this->_title = $props->get('title', $fileNameParts['filename']);
+
         $text = readTextFile($fileName);
 
 		$this->_content = "";
 
+        $append = false;
         foreach(preg_split("/((\r?\n)|(\r\n?))/", $text) as $line)
         {
-            if (0 === strpos($line, '# '))
+            if (!$append && (strlen($line) > 2) && ('$' === $line[0]))
             {
-				if (empty($this->_title))
-				{
-					$this->_title = trim(substr($line, 2));
-				}
-			}
-            else if (0 === strpos($line, '$title='))
-            {
-				$this->_title = trim(substr($line, 7));
                 continue;
 			}
+            
+            $append = true;
             
             $this->_content .= "$line\n";
         }

@@ -71,10 +71,16 @@ class Engine extends PropertyClass
             $itemPath = combinePath($folderDir, $itemName);
             if (is_file($itemPath) && ('md' == pathinfo($itemPath, PATHINFO_EXTENSION)) && ('index.md' != pathinfo($itemPath, PATHINFO_BASENAME)))
             {
+                $props = new Properties($itemPath);
+
+                $ignore = $props->get('ignore', 0);
+                if ($ignore !== 0)
+                {
+                    continue;
+                }
+                
                 $file = array("name"=>$itemName, "path"=>$itemPath);
 
-                $props = new Properties($itemPath);
-                
                 $file['title'] = $props->get('title', $itemName);
                 $file['order'] = $props->get('order', -1);
 
@@ -137,10 +143,16 @@ class Engine extends PropertyClass
             $itemPath = combinePath($folderDir, $itemName);
             if (is_dir($itemPath))
             {
+                $props = new Properties($itemPath);
+
+                $ignore = $props->get('ignore', 0);
+                if ($ignore !== 0)
+                {
+                    continue;
+                }
+                
                 $folder = array('name'=>$itemName, 'path'=>$itemPath);
 
-                $props = new Properties($itemPath);
-                
                 $folder['title'] = $props->get('title', $itemName);
                 $folder['order'] = $props->get('order', -1);
 

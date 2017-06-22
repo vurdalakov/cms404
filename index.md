@@ -1,59 +1,45 @@
 # cms404
 
-**cms404** is a very simple static content management system for building websites out of [markdown](https://daringfireball.net/projects/markdown/) files.
+**cms404** is a very simple static content management system (CMS) for building websites out of [markdown](https://en.wikipedia.org/wiki/Markdown) files.
 
-Written in PHP5 language. Does not use databases.
-
-### Features
+## Features
 
 - [Markdown syntax](https://daringfireball.net/projects/markdown/syntax) of content files, with support of [GitHub flavored markdown](https://help.github.com/categories/writing-on-github/) and [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/).
 - Experimental [markdown extensions](extensions.md).
-- [Macros](customization.md) in markdown files.
-- Content files can be stored in a directory structure.
-- Designed to be updated from a Git repository.
+- [Macros](macros.md) in template and markdown files.
+- Written in PHP5 language.
+- Does not use databases. Content plain text files are stored in a directory structure.
+- Designed to be updated from a Git repository. However you can also use FTP etc.
 - Automatically changes `.md` extensions to `.htm` in site URLs.
 - [View page source](sourceview.md) (markdown content).
 
-### Quick start
+## Documentation
 
-#### Without using Git repository
+- [Quick start](quick.md)
+- [Known problems and solutions](solutions.md)\\
+&nbsp;
+- [Macros](macros.md)
+- [Site, folder and file properties](properties.md)
+- [Experimental markdown extensions](extensions.md)
+- [View page source](sourceview.md)
 
-1. Download this [GitHub repository](https://github.com/vurdalakov/cms404) content.
-1. Replace `.md` files with your own content.
-1. [Customize](customization.md) `template.htm`, `default.css` and `.config` files to follow your needs.
-1. Upload repository content to any place of your site.
-
-#### Using Git repository
-
-1. Fork this [GitHub repository](https://github.com/vurdalakov/cms404).
-1. Replace `.md` files with your own content.
-1. [Customize](customization.md) `template.htm`, `default.css` and `.config` files to follow your needs.
-1. Set `$gitTag` property (any URL-encoded string) in `.config` file.
-1. Clone your repository to your site (e.g. using SSH).
-1. Configure deployment key in Git repository and copy it to your web site.
-1. Configure webhook in Git repository to POST to `<your site root>/.engine/update.php?tag=<git tag>` URL.
-
-### Known problems and solutions
-
-Disable [eAccelerator PHP extension](https://github.com/eaccelerator/eaccelerator/issues/12) if you get the following error:
-
-```
-preg_replace_callback(): Requires argument 2, '', to be a valid callback
-```
-
-### Acknowledgements
+## Acknowledgements
 
 - [Parsedown](http://parsedown.org/) markdown parser in PHP.
 - [Parsedown Extra](https://github.com/erusev/parsedown-extra) extension.
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css): the minimal amount of CSS to replicate the GitHub Markdown style.
 - [Fork me on GitHub CSS ribbon](https://github.com/simonwhitaker/github-fork-ribbon-css).
+
+## Inspiration
+
+- [Twig](https://twig.sensiolabs.org/): a flexible, fast, and secure template engine for PHP.
 - [Wikitten](https://wikitten.vizuina.com/): a small, fast, PHP wiki.
 
-### License
+## License
 
 Distributed under the terms of the [MIT license](https://opensource.org/licenses/MIT).
 
-### Disclaimer
+## Disclaimer
 
 ```
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 

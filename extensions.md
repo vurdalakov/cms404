@@ -1,5 +1,15 @@
 # cms404 markdown extensions
 
+cms404 markdown extensions are located in the `.engine/ParsedownExtensions.php` file.
+
+You can use it in your own project:
+
+```
+$text = file_get_contents('index.md');
+$parsedown = new ParsedownExtensions();
+echo $parsedown->text($text);
+```
+
 ## Hard line breaks
 
 End a line with two backslashes to insert a hard line break (`<br />`):
