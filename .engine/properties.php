@@ -14,16 +14,16 @@ class Properties
         }
         else
         {
-            $fileOrDirectoryName = combinePath($fileOrDirectoryName, '.folder');
-            if (is_file($fileOrDirectoryName))
+            $fileName = combinePath($fileOrDirectoryName, '.folder');
+            if (is_file($fileName))
             {
-                $this->readFile($fileOrDirectoryName);
+                $this->readFile($fileName);
             }
 
-            $fileOrDirectoryName = combinePath($fileOrDirectoryName, 'index.md');
-            if (is_file($fileOrDirectoryName))
+            $fileName = combinePath($fileOrDirectoryName, 'index.md');
+            if (is_file($fileName))
             {
-                $this->readFile($fileOrDirectoryName);
+                $this->readFile($fileName);
             }
         }
     }
