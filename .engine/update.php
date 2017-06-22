@@ -14,11 +14,12 @@ class Updater extends PropertyClass
     
     function __construct()
 	{
-        $this->rootUrl = $_SERVER['SCRIPT_NAME'];
-        $this->rootDir = $_SERVER['SCRIPT_FILENAME'];
-        $pos = strpos($this->rootDir, '/', strlen($this->rootDir) - strlen($this->rootUrl) + 1);
-        $this->rootDir = substr($this->rootDir, 0, $pos);
-        $this->rootUrl = dirname(dirname($this->rootUrl));
+        $this->rootUrl = dirname(dirname($_SERVER['SCRIPT_NAME']));
+        if ("/" === $this->rootUrl)
+        {
+            $this->rootUrl = "";
+        }
+        $this->rootDir = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
 
         $propsFileName = combinePath($this->rootDir, ".config");
         $props = new Properties($propsFileName);
@@ -71,7 +72,7 @@ class Updater extends PropertyClass
 
         $this->email('200 OK', $body);
 
-        echo "Email sent\r\n";
+        echo "Email sent to " . $this->adminEmail . "\r\n";
         echo "-----------------------\r\n";
 
         echo sprintf("</pre>\r\n<br/>\r\n<a href='%s'>%s</a><br/>\r\n", $this->_url, $this->_url);
